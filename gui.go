@@ -15,25 +15,25 @@ type gui struct {
 
 type updateFrame func(frame ScreenStreamFrame)
 
-type inputKey pbgui.InputKey
+type InputKey pbgui.InputKey
 
 const (
-	InputKeyUp    = inputKey(pbgui.InputKey_UP)
-	InputKeyDown  = inputKey(pbgui.InputKey_DOWN)
-	InputKeyRight = inputKey(pbgui.InputKey_RIGHT)
-	InputKeyLeft  = inputKey(pbgui.InputKey_LEFT)
-	InputKeyOk    = inputKey(pbgui.InputKey_OK)
-	InputKeyBack  = inputKey(pbgui.InputKey_BACK)
+	InputKeyUp    = InputKey(pbgui.InputKey_UP)
+	InputKeyDown  = InputKey(pbgui.InputKey_DOWN)
+	InputKeyRight = InputKey(pbgui.InputKey_RIGHT)
+	InputKeyLeft  = InputKey(pbgui.InputKey_LEFT)
+	InputKeyOk    = InputKey(pbgui.InputKey_OK)
+	InputKeyBack  = InputKey(pbgui.InputKey_BACK)
 )
 
-type inputType pbgui.InputType
+type InputType pbgui.InputType
 
 const (
-	InputTypePress   = inputType(pbgui.InputType_PRESS)
-	InputTypeRelease = inputType(pbgui.InputType_RELEASE)
-	InputTypeShort   = inputType(pbgui.InputType_SHORT)
-	InputTypeLong    = inputType(pbgui.InputType_LONG)
-	InputTypeRepeat  = inputType(pbgui.InputType_REPEAT)
+	InputTypePress   = InputType(pbgui.InputType_PRESS)
+	InputTypeRelease = InputType(pbgui.InputType_RELEASE)
+	InputTypeShort   = InputType(pbgui.InputType_SHORT)
+	InputTypeLong    = InputType(pbgui.InputType_LONG)
+	InputTypeRepeat  = InputType(pbgui.InputType_REPEAT)
 )
 
 func (g *gui) StartScreenStream(callback updateFrame) error {
@@ -53,7 +53,7 @@ func (g *gui) StopScreenStream() error {
 	return err
 }
 
-func (g *gui) SendInputEvent(key inputKey, eventType inputType) error {
+func (g *gui) SendInputEvent(key InputKey, eventType InputType) error {
 	req := &pb.Main{
 		Content: &pb.Main_GuiSendInputEventRequest{
 			GuiSendInputEventRequest: &pbgui.SendInputEventRequest{

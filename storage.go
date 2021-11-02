@@ -11,15 +11,15 @@ type storage struct {
 	f *Flipper
 }
 
-type fileType pbstorage.File_FileType
+type FileType pbstorage.File_FileType
 
 const (
-	FileTypeFile = fileType(pbstorage.File_FILE)
-	FileTypeDir  = fileType(pbstorage.File_DIR)
+	FileTypeFile = FileType(pbstorage.File_FILE)
+	FileTypeDir  = FileType(pbstorage.File_DIR)
 )
 
 type File struct {
-	Type fileType
+	Type FileType
 	Name string
 	Size uint32
 	Data []byte
@@ -41,7 +41,7 @@ func (s *storage) Stat(path string) (*File, error) {
 	f := res[0].(*pb.Main_StorageStatResponse).StorageStatResponse.File
 
 	return &File{
-		Type: fileType(f.Type),
+		Type: FileType(f.Type),
 		Name: f.Name,
 		Size: f.Size,
 		Data: f.Data,
@@ -65,7 +65,7 @@ func (s *storage) List(path string) ([]*File, error) {
 	for _, r := range res {
 		for _, i := range r.(*pb.Main_StorageListResponse).StorageListResponse.File {
 			items = append(items, &File{
-				Type: fileType(i.Type),
+				Type: FileType(i.Type),
 				Name: i.Name,
 				Size: i.Size,
 				Data: i.Data,
