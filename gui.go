@@ -13,7 +13,7 @@ type gui struct {
 	frameCallback updateFrame
 }
 
-type updateFrame func(frame ScreenStreamFrame)
+type updateFrame func(frame ScreenFrame)
 
 type InputKey pbgui.InputKey
 
@@ -66,22 +66,47 @@ func (g *gui) SendInputEvent(key InputKey, eventType InputType) error {
 	return err
 }
 
-type ScreenStreamFrame struct {
+func (g *gui) StartVirtualDisplay() error {
+	req := &pb.Main{
+		Content: &pb.Main_GuiStartVirtualDisplayRequest{},
+	}
+	_, err := g.f.call(nil, req)
+	return err
+}
+
+func (g *gui) StopVirtualDisplay() error {
+	req := &pb.Main{
+		Content: &pb.Main_GuiStopVirtualDisplayRequest{},
+	}
+	_, err := g.f.call(nil, req)
+	return err
+}
+
+func (g *gui) UpdateVirtualDisplay(buf []byte) error {
+	req := &pb.Main{
+		Content: &pb.Main_GuiScreenFrame{
+			GuiScreenFrame: &pbgui.ScreenFrame{Data: buf},
+		},
+	}
+	return g.f.sendUnsolicited(req)
+}
+
+type ScreenFrame struct {
 	buffer []byte
 }
 
-func (sf ScreenStreamFrame) Bytes() []byte {
+func (sf ScreenFrame) Bytes() []byte {
 	return sf.buffer
 }
 
-func (sf ScreenStreamFrame) IsPixelSet(x, y int) bool {
+func (sf ScreenFrame) IsPixelSet(x, y int) bool {
 	i := (y / 8) * 128
 	y &= 7
 	i += x
 	return (sf.buffer[i] & (1 << y)) != 0
 }
 
-func (sf ScreenStreamFrame) ToImage(foreground, background color.Color) image.Image {
+func (sf ScreenFrame) ToImage(foreground, background color.Color) image.Image {
 	width := 128
 	height := 64
 

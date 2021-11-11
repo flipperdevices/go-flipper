@@ -70,6 +70,13 @@ func (f *Flipper) StopSession() error {
 	return err
 }
 
+func (f *Flipper) sendUnsolicited(req *pb.Main) error {
+	f.mutex.Lock()
+	err := f.wr.PutProto(req)
+	f.mutex.Unlock()
+	return err
+}
+
 func (f *Flipper) call(progressCallback updateProgress, req ...*pb.Main) ([]interface{}, error) {
 	f.mutex.Lock()
 
@@ -121,9 +128,9 @@ func (f *Flipper) call(progressCallback updateProgress, req ...*pb.Main) ([]inte
 
 func (f *Flipper) handleUnsolicited(res *pb.Main) {
 	switch c := res.Content.(type) {
-	case *pb.Main_GuiScreenStreamFrame:
+	case *pb.Main_GuiScreenFrame:
 		if f.Gui.frameCallback != nil {
-			f.Gui.frameCallback(ScreenStreamFrame{c.GuiScreenStreamFrame.Data})
+			f.Gui.frameCallback(ScreenFrame{c.GuiScreenFrame.Data})
 		}
 		break
 	default:
