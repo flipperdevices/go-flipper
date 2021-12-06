@@ -6,7 +6,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -35,10 +34,9 @@ func main() {
 			if err != nil {
 				log.Fatalln("Can't compose import path", m, err)
 			}
-			args = append(args, fmt.Sprintf("--go_opt=M%s=%s%s", filepath.Base(m), baseImportPath, p))
+			args = append(args, "--go_opt=M"+filepath.Base(m)+"="+baseImportPath+p)
 		}
 		args = append(args, matches...)
-		fmt.Println(args)
 		cmd := exec.Command("protoc", args...)
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr

@@ -2,12 +2,12 @@ package flipper
 
 import (
 	"errors"
-	"fmt"
-	"github.com/flipperdevices/go-flipper/internal/delimited"
-	pb "github.com/flipperdevices/go-flipper/internal/proto"
 	"io"
 	"sync"
 	"time"
+
+	"github.com/flipperdevices/go-flipper/internal/delimited"
+	pb "github.com/flipperdevices/go-flipper/internal/proto"
 )
 
 type Flipper struct {
@@ -18,7 +18,7 @@ type Flipper struct {
 	counter uint32
 	timeout time.Duration
 
-	Status  status
+	System  system
 	Storage storage
 	App     app
 	Gui     gui
@@ -47,14 +47,14 @@ func ConnectWithTimeout(rw io.ReadWriter, timeout time.Duration) (*Flipper, erro
 		counter: 1,
 		timeout: timeout,
 	}
-	f.Status = status{f: f}
+	f.System = system{f: f}
 	f.Storage = storage{f: f}
 	f.App = app{f: f}
 	f.Gui = gui{f: f}
 
 	go f.read()
 
-	err := f.Status.Ping()
+	err := f.System.Ping()
 	if err != nil {
 		return nil, err
 	}
@@ -144,7 +144,7 @@ func (f *Flipper) read() {
 		var res pb.Main
 		err = f.rd.NextProto(&res)
 		if err != nil {
-			err = fmt.Errorf("error reading message: %q", err)
+			err = errors.New("error reading message: " + err.Error())
 			continue
 		}
 		if res.CommandId == 0 {

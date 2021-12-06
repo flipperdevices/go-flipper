@@ -25,6 +25,26 @@ type File struct {
 	Data []byte
 }
 
+func (s *storage) Info(path string) (total_space, free_space uint64, err error) {
+	req := &pb.Main{
+		Content: &pb.Main_StorageInfoRequest{
+			StorageInfoRequest: &pbstorage.InfoRequest{
+				Path: path,
+			},
+		},
+	}
+	res, err := s.f.call(nil, req)
+	if err != nil {
+		return 0, 0, err
+	}
+
+	f := res[0].(*pb.Main_StorageInfoResponse).StorageInfoResponse
+	total_space = f.TotalSpace
+	free_space = f.FreeSpace
+
+	return
+}
+
 func (s *storage) Stat(path string) (*File, error) {
 	req := &pb.Main{
 		Content: &pb.Main_StorageStatRequest{
@@ -175,4 +195,17 @@ func (s *storage) GetMd5Sum(path string) (string, error) {
 		return "", err
 	}
 	return res[0].(*pb.Main_StorageMd5SumResponse).StorageMd5SumResponse.Md5Sum, nil
+}
+
+func (s *storage) Rename(oldPath, newPath string) error {
+	req := &pb.Main{
+		Content: &pb.Main_StorageRenameRequest{
+			StorageRenameRequest: &pbstorage.RenameRequest{
+				OldPath: oldPath,
+				NewPath: newPath,
+			},
+		},
+	}
+	_, err := s.f.call(nil, req)
+	return err
 }

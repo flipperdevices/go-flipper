@@ -25,7 +25,7 @@ package delimited // import "kythe.io/kythe/go/platform/delimited"
 import (
 	"bufio"
 	"encoding/binary"
-	"fmt"
+	"errors"
 	"io"
 
 	"google.golang.org/protobuf/proto"
@@ -112,7 +112,7 @@ func (w Writer) Put(record []byte) error {
 func (w Writer) PutProto(msg proto.Message) error {
 	rec, err := proto.Marshal(msg)
 	if err != nil {
-		return fmt.Errorf("error encoding proto: %v", err)
+		return errors.New("error encoding proto: " + err.Error())
 	}
 	return w.Put(rec)
 }
