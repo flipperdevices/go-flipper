@@ -300,6 +300,44 @@ func (x *DeviceInfoResponse) GetValue() string {
 	return ""
 }
 
+type FactoryResetRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *FactoryResetRequest) Reset() {
+	*x = FactoryResetRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_system_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FactoryResetRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FactoryResetRequest) ProtoMessage() {}
+
+func (x *FactoryResetRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_system_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FactoryResetRequest.ProtoReflect.Descriptor instead.
+func (*FactoryResetRequest) Descriptor() ([]byte, []int) {
+	return file_system_proto_rawDescGZIP(), []int{5}
+}
+
 var File_system_proto protoreflect.FileDescriptor
 
 var file_system_proto_rawDesc = []byte{
@@ -320,10 +358,12 @@ var file_system_proto_rawDesc = []byte{
 	0x0a, 0x12, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70,
 	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x42, 0x24, 0x0a, 0x22,
-	0x63, 0x6f, 0x6d, 0x2e, 0x66, 0x6c, 0x69, 0x70, 0x70, 0x65, 0x72, 0x64, 0x65, 0x76, 0x69, 0x63,
-	0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x73, 0x79, 0x73, 0x74,
-	0x65, 0x6d, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x15, 0x0a, 0x13,
+	0x46, 0x61, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x42, 0x24, 0x0a, 0x22, 0x63, 0x6f, 0x6d, 0x2e, 0x66, 0x6c, 0x69, 0x70, 0x70,
+	0x65, 0x72, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
+	0x75, 0x66, 0x2e, 0x73, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -339,7 +379,7 @@ func file_system_proto_rawDescGZIP() []byte {
 }
 
 var file_system_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_system_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_system_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_system_proto_goTypes = []interface{}{
 	(RebootRequest_RebootMode)(0), // 0: PB_System.RebootRequest.RebootMode
 	(*PingRequest)(nil),           // 1: PB_System.PingRequest
@@ -347,6 +387,7 @@ var file_system_proto_goTypes = []interface{}{
 	(*RebootRequest)(nil),         // 3: PB_System.RebootRequest
 	(*DeviceInfoRequest)(nil),     // 4: PB_System.DeviceInfoRequest
 	(*DeviceInfoResponse)(nil),    // 5: PB_System.DeviceInfoResponse
+	(*FactoryResetRequest)(nil),   // 6: PB_System.FactoryResetRequest
 }
 var file_system_proto_depIdxs = []int32{
 	0, // 0: PB_System.RebootRequest.mode:type_name -> PB_System.RebootRequest.RebootMode
@@ -423,6 +464,18 @@ func file_system_proto_init() {
 				return nil
 			}
 		}
+		file_system_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FactoryResetRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -430,7 +483,7 @@ func file_system_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_system_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   5,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

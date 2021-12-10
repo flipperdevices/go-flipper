@@ -53,3 +53,11 @@ func (s *system) DeviceInfo() (map[string]string, error) {
 
 	return deviceInfo, nil
 }
+
+func (s *system) FactoryReset() error {
+	req := &pb.Main{
+		Content: &pb.Main_SystemFactoryResetRequest{},
+	}
+	_, err := s.f.call(nil, req)
+	return err
+}

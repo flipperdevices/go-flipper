@@ -11,6 +11,7 @@ var reqResMap = map[reflect.Type]reflect.Type{
 	reflect.TypeOf(&pb.Main_SystemPingRequest{}):             reflect.TypeOf(&pb.Main_SystemPingResponse{}),
 	reflect.TypeOf(&pb.Main_SystemRebootRequest{}):           reflect.TypeOf(&pb.Main_Empty{}),
 	reflect.TypeOf(&pb.Main_SystemDeviceInfoRequest{}):       reflect.TypeOf(&pb.Main_SystemDeviceInfoResponse{}),
+	reflect.TypeOf(&pb.Main_SystemFactoryResetRequest{}):     reflect.TypeOf(&pb.Main_Empty{}),
 	reflect.TypeOf(&pb.Main_StorageInfoRequest{}):            reflect.TypeOf(&pb.Main_StorageInfoResponse{}),
 	reflect.TypeOf(&pb.Main_StorageStatRequest{}):            reflect.TypeOf(&pb.Main_StorageStatResponse{}),
 	reflect.TypeOf(&pb.Main_StorageListRequest{}):            reflect.TypeOf(&pb.Main_StorageListResponse{}),
