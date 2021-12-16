@@ -1,11 +1,12 @@
 package flipper
 
 import (
-	pb "github.com/flipperdevices/go-flipper/internal/proto"
-	pbgui "github.com/flipperdevices/go-flipper/internal/proto/gui"
 	"image"
 	"image/color"
 	"image/draw"
+
+	pb "github.com/flipperdevices/go-flipper/internal/proto"
+	pbgui "github.com/flipperdevices/go-flipper/internal/proto/gui"
 )
 
 type gui struct {
@@ -66,9 +67,18 @@ func (g *gui) SendInputEvent(key InputKey, eventType InputType) error {
 	return err
 }
 
-func (g *gui) StartVirtualDisplay() error {
+func (g *gui) StartVirtualDisplay(buf []byte) error {
+	var frame *pbgui.ScreenFrame
+	if buf != nil {
+		frame = &pbgui.ScreenFrame{Data: buf}
+	}
+
 	req := &pb.Main{
-		Content: &pb.Main_GuiStartVirtualDisplayRequest{},
+		Content: &pb.Main_GuiStartVirtualDisplayRequest{
+			GuiStartVirtualDisplayRequest: &pbgui.StartVirtualDisplayRequest{
+				FirstFrame: frame,
+			},
+		},
 	}
 	_, err := g.f.call(nil, req)
 	return err

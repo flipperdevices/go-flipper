@@ -338,6 +338,235 @@ func (*FactoryResetRequest) Descriptor() ([]byte, []int) {
 	return file_system_proto_rawDescGZIP(), []int{5}
 }
 
+type GetDateTimeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *GetDateTimeRequest) Reset() {
+	*x = GetDateTimeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_system_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetDateTimeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDateTimeRequest) ProtoMessage() {}
+
+func (x *GetDateTimeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_system_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDateTimeRequest.ProtoReflect.Descriptor instead.
+func (*GetDateTimeRequest) Descriptor() ([]byte, []int) {
+	return file_system_proto_rawDescGZIP(), []int{6}
+}
+
+type GetDateTimeResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Datetime *DateTime `protobuf:"bytes,1,opt,name=datetime,proto3" json:"datetime,omitempty"`
+}
+
+func (x *GetDateTimeResponse) Reset() {
+	*x = GetDateTimeResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_system_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetDateTimeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDateTimeResponse) ProtoMessage() {}
+
+func (x *GetDateTimeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_system_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDateTimeResponse.ProtoReflect.Descriptor instead.
+func (*GetDateTimeResponse) Descriptor() ([]byte, []int) {
+	return file_system_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetDateTimeResponse) GetDatetime() *DateTime {
+	if x != nil {
+		return x.Datetime
+	}
+	return nil
+}
+
+type SetDateTimeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Datetime *DateTime `protobuf:"bytes,1,opt,name=datetime,proto3" json:"datetime,omitempty"`
+}
+
+func (x *SetDateTimeRequest) Reset() {
+	*x = SetDateTimeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_system_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetDateTimeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetDateTimeRequest) ProtoMessage() {}
+
+func (x *SetDateTimeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_system_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetDateTimeRequest.ProtoReflect.Descriptor instead.
+func (*SetDateTimeRequest) Descriptor() ([]byte, []int) {
+	return file_system_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *SetDateTimeRequest) GetDatetime() *DateTime {
+	if x != nil {
+		return x.Datetime
+	}
+	return nil
+}
+
+type DateTime struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Time
+	Hour   uint32 `protobuf:"varint,1,opt,name=hour,proto3" json:"hour,omitempty"`     //*< Hour in 24H format: 0-23
+	Minute uint32 `protobuf:"varint,2,opt,name=minute,proto3" json:"minute,omitempty"` //*< Minute: 0-59
+	Second uint32 `protobuf:"varint,3,opt,name=second,proto3" json:"second,omitempty"` //*< Second: 0-59
+	// Date
+	Day     uint32 `protobuf:"varint,4,opt,name=day,proto3" json:"day,omitempty"`         //*< Current day: 1-31
+	Month   uint32 `protobuf:"varint,5,opt,name=month,proto3" json:"month,omitempty"`     //*< Current month: 1-12
+	Year    uint32 `protobuf:"varint,6,opt,name=year,proto3" json:"year,omitempty"`       //*< Current year: 2000-2099
+	Weekday uint32 `protobuf:"varint,7,opt,name=weekday,proto3" json:"weekday,omitempty"` //*< Current weekday: 1-7
+}
+
+func (x *DateTime) Reset() {
+	*x = DateTime{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_system_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DateTime) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DateTime) ProtoMessage() {}
+
+func (x *DateTime) ProtoReflect() protoreflect.Message {
+	mi := &file_system_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DateTime.ProtoReflect.Descriptor instead.
+func (*DateTime) Descriptor() ([]byte, []int) {
+	return file_system_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *DateTime) GetHour() uint32 {
+	if x != nil {
+		return x.Hour
+	}
+	return 0
+}
+
+func (x *DateTime) GetMinute() uint32 {
+	if x != nil {
+		return x.Minute
+	}
+	return 0
+}
+
+func (x *DateTime) GetSecond() uint32 {
+	if x != nil {
+		return x.Second
+	}
+	return 0
+}
+
+func (x *DateTime) GetDay() uint32 {
+	if x != nil {
+		return x.Day
+	}
+	return 0
+}
+
+func (x *DateTime) GetMonth() uint32 {
+	if x != nil {
+		return x.Month
+	}
+	return 0
+}
+
+func (x *DateTime) GetYear() uint32 {
+	if x != nil {
+		return x.Year
+	}
+	return 0
+}
+
+func (x *DateTime) GetWeekday() uint32 {
+	if x != nil {
+		return x.Weekday
+	}
+	return 0
+}
+
 var File_system_proto protoreflect.FileDescriptor
 
 var file_system_proto_rawDesc = []byte{
@@ -360,10 +589,30 @@ var file_system_proto_rawDesc = []byte{
 	0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18,
 	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x15, 0x0a, 0x13,
 	0x46, 0x61, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x42, 0x24, 0x0a, 0x22, 0x63, 0x6f, 0x6d, 0x2e, 0x66, 0x6c, 0x69, 0x70, 0x70,
-	0x65, 0x72, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
-	0x75, 0x66, 0x2e, 0x73, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x65, 0x73, 0x74, 0x22, 0x14, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x44, 0x61, 0x74, 0x65, 0x54, 0x69,
+	0x6d, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x46, 0x0a, 0x13, 0x47, 0x65, 0x74,
+	0x44, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x2f, 0x0a, 0x08, 0x64, 0x61, 0x74, 0x65, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x13, 0x2e, 0x50, 0x42, 0x5f, 0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x2e, 0x44,
+	0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x08, 0x64, 0x61, 0x74, 0x65, 0x74, 0x69, 0x6d,
+	0x65, 0x22, 0x45, 0x0a, 0x12, 0x53, 0x65, 0x74, 0x44, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2f, 0x0a, 0x08, 0x64, 0x61, 0x74, 0x65, 0x74,
+	0x69, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x50, 0x42, 0x5f, 0x53,
+	0x79, 0x73, 0x74, 0x65, 0x6d, 0x2e, 0x44, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x08,
+	0x64, 0x61, 0x74, 0x65, 0x74, 0x69, 0x6d, 0x65, 0x22, 0xa4, 0x01, 0x0a, 0x08, 0x44, 0x61, 0x74,
+	0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x68, 0x6f, 0x75, 0x72, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0d, 0x52, 0x04, 0x68, 0x6f, 0x75, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x6d, 0x69, 0x6e,
+	0x75, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x06, 0x6d, 0x69, 0x6e, 0x75, 0x74,
+	0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0d, 0x52, 0x06, 0x73, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x12, 0x10, 0x0a, 0x03, 0x64, 0x61, 0x79,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x03, 0x64, 0x61, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x6d,
+	0x6f, 0x6e, 0x74, 0x68, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x6d, 0x6f, 0x6e, 0x74,
+	0x68, 0x12, 0x12, 0x0a, 0x04, 0x79, 0x65, 0x61, 0x72, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0d, 0x52,
+	0x04, 0x79, 0x65, 0x61, 0x72, 0x12, 0x18, 0x0a, 0x07, 0x77, 0x65, 0x65, 0x6b, 0x64, 0x61, 0x79,
+	0x18, 0x07, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x77, 0x65, 0x65, 0x6b, 0x64, 0x61, 0x79, 0x42,
+	0x24, 0x0a, 0x22, 0x63, 0x6f, 0x6d, 0x2e, 0x66, 0x6c, 0x69, 0x70, 0x70, 0x65, 0x72, 0x64, 0x65,
+	0x76, 0x69, 0x63, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x73,
+	0x79, 0x73, 0x74, 0x65, 0x6d, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -379,7 +628,7 @@ func file_system_proto_rawDescGZIP() []byte {
 }
 
 var file_system_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_system_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_system_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_system_proto_goTypes = []interface{}{
 	(RebootRequest_RebootMode)(0), // 0: PB_System.RebootRequest.RebootMode
 	(*PingRequest)(nil),           // 1: PB_System.PingRequest
@@ -388,14 +637,20 @@ var file_system_proto_goTypes = []interface{}{
 	(*DeviceInfoRequest)(nil),     // 4: PB_System.DeviceInfoRequest
 	(*DeviceInfoResponse)(nil),    // 5: PB_System.DeviceInfoResponse
 	(*FactoryResetRequest)(nil),   // 6: PB_System.FactoryResetRequest
+	(*GetDateTimeRequest)(nil),    // 7: PB_System.GetDateTimeRequest
+	(*GetDateTimeResponse)(nil),   // 8: PB_System.GetDateTimeResponse
+	(*SetDateTimeRequest)(nil),    // 9: PB_System.SetDateTimeRequest
+	(*DateTime)(nil),              // 10: PB_System.DateTime
 }
 var file_system_proto_depIdxs = []int32{
-	0, // 0: PB_System.RebootRequest.mode:type_name -> PB_System.RebootRequest.RebootMode
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0,  // 0: PB_System.RebootRequest.mode:type_name -> PB_System.RebootRequest.RebootMode
+	10, // 1: PB_System.GetDateTimeResponse.datetime:type_name -> PB_System.DateTime
+	10, // 2: PB_System.SetDateTimeRequest.datetime:type_name -> PB_System.DateTime
+	3,  // [3:3] is the sub-list for method output_type
+	3,  // [3:3] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_system_proto_init() }
@@ -476,6 +731,54 @@ func file_system_proto_init() {
 				return nil
 			}
 		}
+		file_system_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetDateTimeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_system_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetDateTimeResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_system_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetDateTimeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_system_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DateTime); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -483,7 +786,7 @@ func file_system_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_system_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   6,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
