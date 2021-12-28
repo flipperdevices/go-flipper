@@ -98,3 +98,13 @@ func (s *system) SetDateTime(t time.Time) error {
 	_, err := s.f.call(nil, req)
 	return err
 }
+
+func (s *system) PlayAudiovisualAlert() error {
+	req := &pb.Main{
+		Content: &pb.Main_SystemPlayAudiovisualAlertRequest{
+			SystemPlayAudiovisualAlertRequest: &pbsystem.PlayAudiovisualAlertRequest{},
+		},
+	}
+	_, err := s.f.call(nil, req)
+	return err
+}
